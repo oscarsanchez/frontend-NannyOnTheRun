@@ -21,7 +21,7 @@ angular.module('AngularScaffold.Controllers')
                     status : $scope.user.status,
                     scope: $scope.user.scope};
         HomeService.PostUser(user).then(function(response){
-          alert("Posted to /users");
+          //alert("Posted to /users");
           $scope.getUsers();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
@@ -33,7 +33,7 @@ angular.module('AngularScaffold.Controllers')
       $scope.updateUser = function(item){
         $scope.user=item;
         HomeService.UpdateUser($scope.user,item._id).then(function(response){
-          alert("Update from /users");
+          //alert("Update from /users");
           $scope.getUsers();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
@@ -43,7 +43,7 @@ angular.module('AngularScaffold.Controllers')
       $scope.deleteUser = function(item){
         $scope.user=item;
         HomeService.DeleteUser($scope.user,item._id).then(function(response){
-          alert("Delete from /users");
+          //alert("Delete from /users");
           $scope.getUsers();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
@@ -54,7 +54,7 @@ angular.module('AngularScaffold.Controllers')
       $scope.undeleteUser = function(item){
         $scope.user=item;
         HomeService.UndeleteUser($scope.user,item._id).then(function(response){
-          alert("Enable from /users");
+          //alert("Enable from /users");
           $scope.getUsers();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);

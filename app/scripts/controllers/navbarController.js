@@ -7,6 +7,7 @@ angular.module('AngularScaffold.Controllers')
         authService.Logout().then(function(response){
           alert('logged out correctly');
           $sessionStorage.$reset();
+          $state.go('main');
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
         })
@@ -16,6 +17,7 @@ angular.module('AngularScaffold.Controllers')
         authService.Login(user).then(function(response){
           $sessionStorage.currentUser = response.data;
           $scope.user = {};
+          $state.go('home');
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
         });
@@ -34,6 +36,9 @@ angular.module('AngularScaffold.Controllers')
 
       $scope.goProfile = function(){
         $state.go('profile');
+      };
+      $scope.goHome = function(){
+        $state.go('home');
       };
 
 
