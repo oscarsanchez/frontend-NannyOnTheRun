@@ -120,7 +120,7 @@ var appMaster = {
             onHoverStop: "off",
             fullScreenOffsetContainer: ""
         });
-        
+
     },
 
     scrollMenu: function(){
@@ -160,3 +160,9 @@ $(document).ready(function() {
     appMaster.placeHold();
 
 });
+
+
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})

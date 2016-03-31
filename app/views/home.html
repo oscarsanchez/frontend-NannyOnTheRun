@@ -1,97 +1,29 @@
 <div ng-controller="HomeController">
-
-  <div class="row">
-    <button type="button" class="btn btn-default" ng-click="getUsers()" ng-show="isRegular() || isAdmin() || isNanny()">Listar Usuarios</button>
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createModal" data-whatever="create" ng-show="isAdmin()">Crear Usuario</button>
-    <label ng-show="isAdmin()" >Filter By Scope: <input ng-show="isAdmin()" ng-model="search.scope"></label><br>
+<header>
+  <div class="">
+    <section>
+      <br><br><br><br>
+    </section>
   </div>
+</header>
 
-  <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" ng-show="isAdmin()" >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">Crear Usuario</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="title">Nombre: </label>
-              <input type="text" name="nombre" ng-model="user.name" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="year">Usuario: </label>
-              <input type="text" name="usuario" ng-model="user.username" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="editorial">Contrasena: </label>
-              <input type="text" name="contrasena" ng-model="user.password" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="author">Telefono: </label>
-              <input type="text" name="telefono" ng-model="user.telephone" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="author">Estado: </label>
-              <input type="text" name="estado" ng-model="user.status" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="author">Scope: </label>
-              <input type="text" name="scope" ng-model="user.scope" class="form-control">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-default" ng-click="postUser()">Guardar Usuario</button>
-        </div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a data-target="#home1" aria-controls="home1" role="tab" data-toggle="tab">Home</a></li>
+    <li ng-show="isAdmin() " role="presentation"><a data-target="#profile1" aria-controls="profile1" role="tab" data-toggle="tab">Crear Usuario</a></li>
+    <li ng-show="isAdmin()" role="presentation"><a data-target="#messages" aria-controls="messages" role="tab" data-toggle="tab">Modificar Usuario</a></li>
+    <li ng-show="isAdmin()" role="presentation"><a data-target="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home1">
+
+      <div class="row">
+        <button type="button" class="btn btn-default" ng-click="getUsers()" ng-show="isRegular() || isAdmin() || isNanny()">Listar Usuarios</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createModal" data-whatever="create" ng-show="isAdmin()">Crear Usuario</button>
+        <label ng-show="isAdmin()" >Filter By Scope: <input ng-show="isAdmin()" ng-model="search.scope"></label><br>
       </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" ng-show="isAdmin()">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">Modificar Usuario</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="title">Nombre: </label>
-              <input type="text" name="nombre" ng-model="user.name" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="year">Usuario: </label>
-              <input type="text" name="usuario" ng-model="user.username" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="editorial">Contrasena: </label>
-              <input type="text" name="contrasena" ng-model="user.password" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="author">Telefono: </label>
-              <input type="text" name="telefono" ng-model="user.telephone" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="author">Estado: </label>
-              <input type="text" name="estado" ng-model="user.status" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="author">Scope: </label>
-              <input type="text" name="scope" ng-model="user.scope" class="form-control">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-default" ng-click="updateUser(user)">Modificar Usuario</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
       <div ng-show="isAdmin() ">
         <div class="media-body">
@@ -136,21 +68,21 @@
             </td>
             <td>
               <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isAdmin()">
-                <button type="button" class="btn btn-default" ng-click="updateUser(user)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
+                <button type="button" aria-controls="messages" role="tab" role="presentation" class="btn btn-default" ng-click="updateUser(user)" data-toggle="tab" data-target="#messages" >Modificar</button>
                 <button type="button" class="btn btn-default" ng-click="deleteUser(user)">Eliminar</button>
               </div>
             </td>
           </tr>
         </table>
 
-  </div>
+      </div>
 
 
-  <div ng-show="isAdmin()">
-    <div class="media-body">
+      <div ng-show="isAdmin()">
+      <div class="media-body">
       <h3 class="media-heading">Usuarios Archivados</h3>
-    </div>
-    <table class="table table-striped">
+      </div>
+      <table class="table table-striped">
       <tr>
         <th>
           Nombre
@@ -194,15 +126,15 @@
           </div>
         </td>
       </tr>
-    </table>
+      </table>
 
-  </div>
+      </div>
 
-  <div ng-show="isNanny() ">
-    <div class="media-body">
+      <div ng-show="isNanny() ">
+      <div class="media-body">
       <h3 class="media-heading">Clientes Activos</h3>
-    </div>
-    <table class="table table-striped">
+      </div>
+      <table class="table table-striped">
       <tr>
         <th>
           Nombre
@@ -246,16 +178,16 @@
           </div>
         </td>
       </tr>
-    </table>
+      </table>
 
-  </div>
+      </div>
 
 
-  <div ng-show="isRegular() ">
-    <div class="media-body">
+      <div ng-show="isRegular() ">
+      <div class="media-body">
       <h3 class="media-heading">Nannys Activas</h3>
-    </div>
-    <table class="table table-striped">
+      </div>
+      <table class="table table-striped">
       <tr>
         <th>
           Nombre
@@ -299,6 +231,80 @@
           </div>
         </td>
       </tr>
-    </table>
+      </table>
+      </div>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile1">
+      <form>
+        <div class="form-group">
+          <label for="title">Nombre: </label>
+          <input type="text" name="nombre" ng-model="user.name" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="year">Usuario: </label>
+          <input type="text" name="usuario" ng-model="user.username" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="editorial">Contrasena: </label>
+          <input type="text" name="contrasena" ng-model="user.password" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="author">Telefono: </label>
+          <input type="text" name="telefono" ng-model="user.telephone" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="author">Estado: </label>
+          <input type="text" name="estado" ng-model="user.status" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="author">Scope: </label>
+          <input type="text" name="scope" ng-model="user.scope" class="form-control">
+        </div>
+      </form>
+        <button type="button" class="btn btn-default" ng-click="postUser()">Guardar Usuario</button>
+    </div>
+        <div role="tabpanel" class="tab-pane" id="messages">
+
+          <form>
+            <div class="form-group">
+              <label for="title">Nombre: </label>
+              <input type="text" name="nombre" ng-model="user.name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="year">Usuario: </label>
+              <input type="text" name="usuario" ng-model="user.username" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="editorial">Contrasena: </label>
+              <input type="text" name="contrasena" ng-model="user.password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="author">Telefono: </label>
+              <input type="text" name="telefono" ng-model="user.telephone" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="author">Estado: </label>
+              <input type="text" name="estado" ng-model="user.status" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="author">Scope: </label>
+              <input type="text" name="scope" ng-model="user.scope" class="form-control">
+            </div>
+          </form>
+
+
+
+          <button type="button" class="btn btn-default" ng-click="updateUser(user)">Modificar Usuario</button>
+
+
+
+        </div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
   </div>
+
+      
+
+
+
 </div>
